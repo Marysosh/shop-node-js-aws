@@ -5,7 +5,7 @@ export const getProductsList = async (event) => {
     return {
       statusCode: 200,
       body: JSON.stringify(
-        { products: productsList },
+        productsList,
         null,
         2
       ),
