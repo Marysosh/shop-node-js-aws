@@ -14,6 +14,31 @@ provider:
   runtime: nodejs18.x
   stage: dev
   region: eu-west-1
+  environment:
+    REGION: eu-west-1
+    PRODUCTS_TABLE: products
+    STOCK_TABLE: stock
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+       - dynamodb:Query
+       - dynamodb:Scan
+       - dynamodb:GetItem
+       - dynamodb:PutItem
+       - dynamodb:UpdateItem
+       - dynamodb:DeleteItem
+      Resource: "arn:aws:dynamodb:eu-west-1:654654310466:table/products"
+    - Effect: "Allow"
+      Action:
+       - dynamodb:Query
+       - dynamodb:Scan
+       - dynamodb:GetItem
+       - dynamodb:PutItem
+       - dynamodb:UpdateItem
+       - dynamodb:DeleteItem
+      Resource: "arn:aws:dynamodb:eu-west-1:654654310466:table/stock"
+
+
 
 functions:
   getProductsList:
@@ -27,7 +52,7 @@ functions:
             headers:
               - Content-Type
   getProductsById:
-    handler: ./functions/get-product-by-id/get-product-by-id.getProductById
+    handler: ./functions/get-product-by-id/get-product-by-id.getProductsById
     events:
       - http:
           method: get
@@ -44,6 +69,16 @@ functions:
               description: "Product not found"
             }
           }
+  createProduct:
+    handler: ./functions/create-product/create-product.createProduct
+    events:
+      - http:
+          method: post
+          path: products
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
 
 custom:
   autoswagger:

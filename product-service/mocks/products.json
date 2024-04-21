@@ -1,0 +1,94 @@
+{
+  "products": [
+    {
+      "title": "ProductTitle 1",
+      "description": "Product description. Some custom description.",
+      "price": 200,
+      "count": 30
+    },
+    {
+      "title": "Product 2",
+      "description": "Product description. Some custom description.",
+      "price": 100,
+      "count": 100
+    },
+    {
+      "title": "Test Product 3",
+      "description": "Product description. Some custom description.",
+      "price": 500,
+      "count": 30
+    },
+    {
+      "title": "Product 4",
+      "description": "Product description. Some custom description.",
+      "price": 250,
+      "count": 70
+    },
+    {
+      "title": "Product 5",
+      "description": "Product description. Some custom description.",
+      "price": 125,
+      "count": 20
+    },
+    {
+      "title": "Product 6",
+      "description": "Product description. Some custom description.",
+      "price": 700,
+      "count": 10
+    },
+    {
+      "title": "Product 7",
+      "description": "Product description. Some custom description.",
+      "price": 2000,
+      "count": 5
+    },
+    {
+      "title": "Product 8",
+      "description": "Product description. Some custom description.",
+      "price": 1100,
+      "count": 300
+    },
+    {
+      "title": "Product 9",
+      "description": "Product description. Some custom description.",
+      "price": 550,
+      "count": 23
+    },
+    {
+      "title": "Product 10",
+      "description": "Product description. Some custom description.",
+      "price": 800,
+      "count": 54
+    },
+    {
+      "title": "Product 11",
+      "description": "Product description. Some custom description.",
+      "price": 950,
+      "count": 3
+    },
+    {
+      "title": "Product 12",
+      "description": "Product description. Some custom description.",
+      "price": 600,
+      "count": 45
+    },
+    {
+      "title": "Product 13",
+      "description": "Product description. Some custom description.",
+      "price": 300,
+      "count": 20
+    },
+    {
+      "title": "Product 14",
+      "description": "Product description. Some custom description.",
+      "price": 100,
+      "count": 100
+    },
+    {
+      "title": "Product 15",
+      "description": "Product description. Some custom description.",
+      "price": 250,
+      "count": 10
+    }
+  ]
+}

@@ -3,9 +3,12 @@
   "version": "1.0.0",
   "description": "Serverless webpack example using ecma script",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "upload-data": "node ./utils/upload-data.js"
   },
   "devDependencies": {
+    "@aws-sdk/client-dynamodb": "^3.540.0",
+    "@aws-sdk/lib-dynamodb": "^3.540.0",
     "@babel/core": "^7.11.1",
     "@babel/preset-env": "^7.24.4",
     "babel-loader": "^8.1.0",
@@ -13,9 +16,12 @@
     "babel-polyfill": "^6.23.0",
     "babel-preset-env": "^1.6.0",
     "jest": "^29.7.0",
+    "json-loader": "^0.5.7",
     "serverless-auto-swagger": "^2.12.0",
     "serverless-webpack": "^5.3.1",
-    "webpack": "^4.35.2"
+    "uuid": "^9.0.1",
+    "webpack": "^4.35.2",
+    "webpack-node-externals": "^3.0.0"
   },
   "author": "The serverless webpack authors (https://github.com/elastic-coders/serverless-webpack)",
   "license": "MIT"

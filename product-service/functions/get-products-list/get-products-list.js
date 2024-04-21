@@ -1,25 +1,57 @@
-import { productsList } from "../../constants/products";
+const { DynamoDBClient } = require("@aws-sdk/client-dynamodb");
+const { DynamoDBDocumentClient, ScanCommand } = require("@aws-sdk/lib-dynamodb");
+const client = new DynamoDBClient({
+  region: process.env.REGION
+});
+
+const docClient = DynamoDBDocumentClient.from(client);
+
+const scanTable = async (tableName) => {
+  const command = new ScanCommand({
+    TableName: tableName,
+  });
+
+  const response = await docClient.send(command);
+
+  return response;
+};
 
 export const getProductsList = async (event) => {
+  let result = [];
+  let statusCode = 200;
+  let {
+    resource = '',
+    path = '',
+    httpMethod=  '',
+    queryStringParameters = {}
+  } = event;
+  let message = 'ok';
+  console.log({ resource, path, httpMethod, queryStringParameters});
+
   try {
+    const [
+      { Items: products },
+      { Items: stock }
+    ] = await Promise.all([
+      scanTable(process.env.PRODUCTS_TABLE),
+      scanTable(process.env.STOCK_TABLE)
+    ]);
+    result = products.map(product => ({
+      ...product,
+      count: stock.find(({ product_id }) => product_id === product.id).count || 0
+    }))
+  } catch (err) {
+    message = err.message;
+    statusCode = 500;
+  }
+  finally {
     return {
-      statusCode: 200,
-      body: JSON.stringify(
-        productsList,
-        null,
-        2
-      ),
       headers: {
+        'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
       },
-    };
-  }
-
-  catch(e) {
-    console.error(e);
-    return {
-      statusCode: 500,
-      error: e,
+      statusCode,
+      body: JSON.stringify(statusCode === 200 ? result : message),
     }
   }
 };
